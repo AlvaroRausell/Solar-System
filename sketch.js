@@ -87,7 +87,7 @@ function draw() {
   if (random() < spawnFrequency) {
     planets.push(
       new Planet(
-        createVector(0, 0),
+        createVector(random(width)), random(height)),
         random(10, 50),
         createVector(random(-1, 1) * 5, random(-1, 1) * 5),
         color(255)
