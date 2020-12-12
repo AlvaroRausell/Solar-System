@@ -17,7 +17,7 @@ class Planet {
     // this.colour = color(random(100, 255), random(50), random(10));
     this.colour = colour ? colour : color(random(190, 255));
     this.max_force = 15;
-    this.max_speed = 0.09;
+    this.max_speed = speed;
     this.aoi = map(this.mass, 10, 100, this.mass, 2 * this.mass);
     if (initial_force) {
       this.applyForce(initial_force);
@@ -67,6 +67,7 @@ class Planet {
   }
 
   move() {
+    this.max_speed = speed;
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.max_speed);
     this.position.add(this.velocity);

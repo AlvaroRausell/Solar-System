@@ -3,6 +3,16 @@ var NUM_PLANETS = 0;
 var NUM_STARS = 1000;
 var G_CONST = 15;
 var stars = [];
+var speed = 0.09;
+var speedStep = 0.1;
+var speedMin = 0.01;
+var speedMax = 10;
+var spawnFrequency = 0.0;
+var spawnFrequencyStep = 0.01;
+
+var spawnFrequencyMax = 1;
+var spawnFrequencyMin = 0;
+var gui;
 var dead_list = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -25,6 +35,8 @@ function setup() {
 
     point(stars[i].x, stars[i].y);
   }
+  gui = createGui("Options");
+  gui.addGlobals("speed", "spawnFrequency");
 }
 function mousePressed() {
   planets.push(
@@ -72,10 +84,10 @@ function draw() {
   //     )
   //   );
   // }
-  if (random() < 0.001) {
+  if (random() < spawnFrequency) {
     planets.push(
       new Planet(
-        createVector(random(width / 3, (2 * width) / 3), random(height)),
+        createVector(0, 0),
         random(10, 50),
         createVector(random(-1, 1) * 5, random(-1, 1) * 5),
         color(255)
